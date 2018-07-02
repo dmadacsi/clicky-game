@@ -3,29 +3,21 @@ import "./CharPics.css";
 // import "./Counter.js";
 const CharPics = props => (
   <div className="card">
-    <div className="img-container">
+ 
+    <div className="img-container"> 
       <img alt={props.name} src={props.image} />
+      
     </div>
-    {/* <div className="content">
-      <ul>
-        <li>
-          <strong>Name:</strong> {props.name}
-        </li>
-        <li>
-          <strong>Occupation:</strong> {props.occupation}
-        </li>
-        <li>
-          <strong>Location:</strong> {props.location}
-        </li>
-      </ul>
-    </div> */}
-    <span onClick={() => props.removeChar(props.id)} className="remove">
-      x
+
+    <span onClick={() => props.mixClick(props.id) + props.handleIncrement(props.id)} className="mixup">
+   x
     </span>
-    {/* <span onClick={() => props.countChar(props.id)} className="count">
-      x
-    </span> */}
-  </div>
+   
+    
+    
+  </div> 
+  
+
 );
 
 export default CharPics;
