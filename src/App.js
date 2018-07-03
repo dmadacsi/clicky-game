@@ -15,13 +15,31 @@ class App extends Component {
     chars,
     count: 0
   };
+constructor() {
+  super();
+  this.array =[12];
+    for(var i=0; i<12; i++){
+    this.array[i]=false};
+    console.log("constructor")
+}
+
   mixClick = id => {
     this.setState({chars: chance.shuffle(this.state.chars)});
     // console.log(this.state.chars.filter(char=>char.id===id))
     console.log(id);
-    if (id===id){
+    
+    
+    if (this.array[id]===true){
       alert(" sorry you lose")
+      console.log(this.array[id])
+      for(var i=0; i<12; i++){
+      this.array[i]=false};
+      this.state.count= -1;
+      return
+      
     }
+    this.array[id]=true;  
+    
   };
   // removeChar= id => {
     // Filter this.state.chars for characters with an id not equal to the id being removed

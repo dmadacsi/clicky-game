@@ -5,16 +5,9 @@ const CharPics = props => (
   <div className="card">
  
     <div className="img-container"> 
-      <img alt={props.name} src={props.image} />
+      <img alt={props.name} src={props.image} onClick={() => props.mixClick(props.id) + props.handleIncrement(props.id)} className="mixup"/>
       
-    </div>
-
-    <span onClick={() => props.mixClick(props.id) + props.handleIncrement(props.id)} className="mixup">
-   x
-    </span>
-   
-    
-    
+    </div>  
   </div> 
   
 
