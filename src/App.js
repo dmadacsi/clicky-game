@@ -13,34 +13,41 @@ class App extends Component {
   // Setting this.state.chars to the chars json array
   state = {
     chars,
-    count: 0
+    count: 0,
+    clicked: []
   };
-constructor() {
-  super();
-  this.array =[12];
-    for(var i=0; i<12; i++){
-    this.array[i]=false};
-    console.log("constructor")
-}
 
   mixClick = id => {
-    this.setState({chars: chance.shuffle(this.state.chars)});
-    // console.log(this.state.chars.filter(char=>char.id===id))
-    console.log(id);
-    
-    
-    if (this.array[id]===true){
-      alert(" sorry you lose")
-      console.log(this.array[id])
-      for(var i=0; i<12; i++){
-      this.array[i]=false};
-      this.state.count= -1;
-      return
-      
+    if (this.state.clicked.includes(id)) {
+      this.setState({chars: chance.shuffle(this.state.chars), count: 0, clicked: []});
+      alert('Sorry Try Again!!');
+    } else {
+      this.setState({
+        chars: chance.shuffle(this.state.chars),
+        clicked: this.state.clicked.concat(id)
+      });
+      this.handleIncrement();
     }
-    this.array[id]=true;  
-    
   };
+
+  // THIS IS NON REACT WAY but works well too
+  // mixClick = id => {
+  //   this.setState({chars: chance.shuffle(this.state.chars)});
+  //   // console.log(this.state.chars.filter(char=>char.id===id))
+  //   console.log(id);
+    
+    
+  //   if (this.array[id]===true){
+  //     alert(" sorry you lose")
+  //     console.log(this.array[id])
+  //     for(var i=0; i<12; i++){
+  //     this.array[i]=false};
+  //     this.state.count= -1;
+  //     return
+      
+  //   }
+  //   this.array[id]=true;  
+
   // removeChar= id => {
     // Filter this.state.chars for characters with an id not equal to the id being removed
     // const chars = this.state.chars.filter(char => char.id !==id);
@@ -51,6 +58,13 @@ constructor() {
 
   handleIncrement = () => {
     this.setState({ count: this.state.count + 1 });
+    console.log(this.state.count +"increment")
+    // if (this.state.count===12){
+    //   alert("you win!!");
+    //   for(var i=0; i<12; i++){
+    //     this.array[i]=false};
+    //     this.state.count= 0;
+    // }
     
   };
   handleDecrement = () => {
@@ -87,7 +101,7 @@ constructor() {
             // removeChar={this.removeChar}
             handleIncrement={this.handleIncrement}
             count={this.state.count}
-            mixClick={this.mixClick}
+            mixClick={() => this.mixClick(char.id)}
             id={char.id}
             key={char.id}
             name={char.name}
